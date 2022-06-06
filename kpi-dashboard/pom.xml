@@ -12,6 +12,8 @@
 		<java.version>17</java.version>
 		<spring.web.version>5.3.20</spring.web.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<!-- Spring-Web -->
@@ -74,34 +76,23 @@
 	</repositories>
 	<build>
 		<plugins>
-			<!-- Maven Compiler Plugin-->
+			<!-- Spring Boot Maven Plugin-->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.2.6.RELEASE</version>
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
+					<mainClass>com.thesis.BidditApplication</mainClass>
 				</configuration>
-			</plugin>
-			<!-- Maven Avro plugin for generating pojo-->
-			<plugin>
-				<groupId>org.apache.avro</groupId>
-				<artifactId>avro-maven-plugin</artifactId>
-				<version>1.8.1</version>
 				<executions>
 					<execution>
-						<phase>generate-sources</phase>
 						<goals>
-							<goal>schema</goal>
+							<goal>repackage</goal>
 						</goals>
-						<configuration>
-							<sourceDirectory>${project.basedir}/src/main/resources/avro/schemas/</sourceDirectory>
-							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
+		<finalName>Kpi-dashboard</finalName>
 	</build>
 </project>
