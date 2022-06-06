@@ -13,12 +13,8 @@ import org.springframework.cloud.stream.schema.client.ConfluentSchemaRegistryCli
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
 
 @Configuration
 public class AppSerdes {
@@ -61,7 +57,6 @@ public class AppSerdes {
     public static Serde<Windowed<String>> windowSerdes_window_1() {
         StringSerializer stringSerializer = new StringSerializer();
         StringDeserializer stringDeserializer = new StringDeserializer();
-        Serde<String> stringSerde = Serdes.serdeFrom(stringSerializer,stringDeserializer);
         TimeWindowedSerializer<String> windowedSerializer = new TimeWindowedSerializer<>(stringSerializer);
         TimeWindowedDeserializer<String> windowedDeserializer = new TimeWindowedDeserializer<>(stringDeserializer, (long)AppConfig.window_1_duration_ms);
         Serde<Windowed<String>> windowSerde = Serdes.serdeFrom(windowedSerializer,windowedDeserializer);
@@ -72,7 +67,6 @@ public class AppSerdes {
     public static Serde<Windowed<String>> windowSerdes_window_2() {
         StringSerializer stringSerializer = new StringSerializer();
         StringDeserializer stringDeserializer = new StringDeserializer();
-        Serde<String> stringSerde = Serdes.serdeFrom(stringSerializer,stringDeserializer);
         TimeWindowedSerializer<String> windowedSerializer = new TimeWindowedSerializer<>(stringSerializer);
         TimeWindowedDeserializer<String> windowedDeserializer = new TimeWindowedDeserializer<>(stringDeserializer, (long)AppConfig.window_2_duration_ms);
         Serde<Windowed<String>> windowSerde = Serdes.serdeFrom(windowedSerializer,windowedDeserializer);
@@ -83,7 +77,6 @@ public class AppSerdes {
     public static Serde<Windowed<String>> windowSerdes_window_3() {
         StringSerializer stringSerializer = new StringSerializer();
         StringDeserializer stringDeserializer = new StringDeserializer();
-        Serde<String> stringSerde = Serdes.serdeFrom(stringSerializer,stringDeserializer);
         TimeWindowedSerializer<String> windowedSerializer = new TimeWindowedSerializer<>(stringSerializer);
         TimeWindowedDeserializer<String> windowedDeserializer = new TimeWindowedDeserializer<>(stringDeserializer, (long)AppConfig.window_3_duration_ms);
         Serde<Windowed<String>> windowSerde = Serdes.serdeFrom(windowedSerializer,windowedDeserializer);
