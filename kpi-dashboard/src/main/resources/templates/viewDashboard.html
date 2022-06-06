@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Home</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/jquery/3.1.0/jquery.min.js" ></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js" ></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js" ></script>
+
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+    <script type="text/javascript">
+
+        Array.prototype.last = function() {
+            return this[this.length - 1];
+        }
+
+        function parseMessage(message){
+            var mes = JSON.parse(message.body);
+            var date = new Date(mes.endWindow);
+            return [date, mes.value];
+        }
+
+        var commonOptions = {
+            legend: {
+                display: false
+            },
+            responsive : true,
+            tooltips : {
+                mode : 'index',
+                intersect : false
+            },
+            hover : {
+                mode : 'nearest',
+                intersect : true
+            },
+            scales : {
+                xAxes : [ {
+                    display : true,
+                    type : 'time',
+                    time : {
+                        tooltipFormat: 'YYYY-MM-DD HH:mm',
+                        displayFormats: {
+                            millisecond: 'HH:mm:ss.SSS',
+                            second: 'HH:mm:ss',
+                            minute: 'HH:mm',
+                            hour: 'HH'
+                        }
+                    },
+                    scaleLabel : {
+                        display : true,
+                        labelString : 'Time'
+                    },
+
+                }],
+                yAxes : [ {
+                    display : true,
+                    scaleLabel : {
+                        display : true,
+                        labelString : 'Total count'
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        callback: function(value) {if (value % 1 === 0) {return value;}}
+                    }
+                } ]
+            }
+        }
+
+        var viewConfig_window_1 = {
+
+            type : 'line',
+            data : {
+                labels : [],
+                datasets : [ {
+                    backgroundColor : 'rgba(255,99,99,0.5)',
+                    borderColor : 'rgb(255,75,75)',
+                    //fillColor: 'rgba(220,100,220,0.5)',
+                    data : [],
+                    fill : false
+                } ]
+            },
+
+            options: Object.assign({}, commonOptions, {
+                title : {
+                    display : true,
+                    text : 'View count per 15 min on Biddit',
+                }
+            })
+        };
+
+        var viewConfig_window_2 = {
+
+            type : 'line',
+            data : {
+                labels : [],
+                datasets : [ {
+                    backgroundColor : 'rgba(104,99,255,0.5)',
+                    borderColor : 'rgb(99,112,255)',
+                    data : [],
+                    fill : false
+                } ]
+            },
+            options: Object.assign({}, commonOptions, {
+                title : {
+                    display : true,
+                    text : 'View count per 1 Hour on Biddit'
+                }
+            })
+        };
+        var viewConfig_window_3 = {
+
+            type : 'line',
+            data : {
+                labels : [],
+                datasets : [ {
+                    backgroundColor : 'rgba(99,255,107,0.5)',
+                    borderColor : 'rgb(133,255,99)',
+                    data : [],
+                    fill : false
+                } ]
+            },
+            options: Object.assign({}, commonOptions, {
+                title : {
+                    display : true,
+                    text : 'View count per 1 Day on Biddit'
+                }
+            })
+        };
+
+
+        /* Document Ready Event */
+        $(document).ready(function() {
+
+            var stompClient;
+            var views_window_1_update = 0;
+            var numberOfElements_window_1 = 48; //Hoeveelheid elementen je op de chart wilt afbeelden
+            var views_window_2_update = 0;
+            var numberOfElements_window_2 = 24
+            var views_window_3_update = 0;
+            var numberOfElements_window_3 = 31
+
+
+            var views_window_1 = document.getElementById('views_window_1').getContext('2d');
+            var views_window_1_instance = new Chart(views_window_1,viewConfig_window_1);
+
+            var views_window_2 = document.getElementById('views_window_2').getContext('2d');
+            var views_window_2_instance = new Chart(views_window_2,viewConfig_window_2);
+
+            var views_window_3 = document.getElementById('views_window_3').getContext('2d');
+            var views_window_3_instance = new Chart(views_window_3,viewConfig_window_3);
+
+            var socket = new SockJS('/kafka');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function(frame) {
+                stompClient.subscribe('/topic/views_window_1_topic', function(message) {
+                    var mes = parseMessage(message);
+                    views_window_1_instance.data.labels.push(mes[0]);
+                    views_window_1_instance.data.datasets.forEach(function(dataset) {
+                        dataset.data.push(mes[1]);
+                    });
+                    if(views_window_1_update > numberOfElements_window_1){
+                        views_window_1_instance.data.labels.shift();
+                        views_window_1_instance.data.datasets[0].data.shift();
+                    }
+
+                    else {views_window_1_update++;}
+
+                    views_window_1_instance.options.scales.xAxes[0].time.max = views_window_1_instance.data.labels.last();
+                    views_window_1_instance.options.scales.xAxes[0].time.min = views_window_1_instance.data.labels.last() - 12*60*60*1000;
+                    views_window_1_instance.update();
+                });
+
+                stompClient.subscribe('/topic/views_window_2_topic', function(message) {
+                    var mes = parseMessage(message);
+                    views_window_2_instance.data.labels.push(mes[0]);
+                    views_window_2_instance.data.datasets.forEach(function(dataset) {
+                        dataset.data.push(mes[1]);
+                    });
+                    if(views_window_2_update > numberOfElements_window_2){
+                        views_window_2_instance.data.labels.shift();
+                        views_window_2_instance.data.datasets[0].data.shift();
+                    }
+                    else {views_window_2_update++;}
+
+                    views_window_2_instance.options.scales.xAxes[0].time.max = views_window_2_instance.data.labels.last() + 1*60*60*1000;
+                    views_window_2_instance.options.scales.xAxes[0].time.min = views_window_2_instance.data.labels.last() - 24*60*60*1000;
+                    views_window_2_instance.update();
+                });
+
+                stompClient.subscribe('/topic/views_window_3_topic', function(message) {
+                    var mes = parseMessage(message);
+                    views_window_3_instance.data.labels.push(mes[0]);
+                    views_window_3_instance.data.datasets.forEach(function(dataset) {
+                        dataset.data.push(mes[1]);
+                    });
+                    if(views_window_3_update > numberOfElements_window_3){
+                        views_window_3_instance.data.labels.shift();
+                        views_window_3_instance.data.datasets[0].data.shift();
+                    }
+                    else {views_window_3_update++;}
+
+                    views_window_3_instance.options.scales.xAxes[0].time.max = views_window_3_instance.data.labels.last() + 24*60*60*1000
+                    views_window_3_instance.options.scales.xAxes[0].time.min = views_window_3_instance.data.labels.last() - 31*24*60*60*1000;
+                    views_window_3_instance.update();
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="model">
+    <div class="modal-dialog" style="width:80%;height:30%">
+        <div class="modal-content">
+            <div class="model-body">
+                <div class="container" style="width:80%">
+                    <canvas id="views_window_1" height="18vh" width="80vw"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="model">
+    <div class="modal-dialog" style="width:80%;height:30%">
+        <div class="modal-content">
+            <div class="model-body">
+                <div class="container" style="width:80%">
+                    <canvas id="views_window_2" height="18vh" width="80vw"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="model">
+    <div class="modal-dialog" style="width:80%;height:30%">
+        <div class="modal-content">
+            <div class="model-body">
+                <div class="container" style="width:80%">
+                    <canvas id="views_window_3" height="18vh" width="80vw"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+FROM openjdk:17
+ADD target/AvroProducer.jar AvroProducer.jar
+ENTRYPOINT ["java", "-jar","AvroProducer.jar"]

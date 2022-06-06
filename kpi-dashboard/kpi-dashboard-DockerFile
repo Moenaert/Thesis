@@ -1,0 +1,4 @@
+FROM openjdk:17
+ADD target/kpi-dashboard.jar kpi-dashboard.jar
+ENTRYPOINT ["java", "-jar","kpi-dashboard.jar"]
+EXPOSE [9091, 9092, 9093]

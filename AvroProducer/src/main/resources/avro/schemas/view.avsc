@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "name": "View",
+  "namespace": "avro_generated_types",
+  "fields": [
+    { "name": "propertyId",
+      "type": ["null", "string"]
+    },{ "name": "numberOfViews",
+        "type": ["null", "long"]
+    },{ "name": "timestamp",
+        "type": ["null",{"type": "long", "logicalType": "timestamp-micros"}]
+    }
+  ]
+}

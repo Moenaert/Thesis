@@ -1,0 +1,25 @@
+docker commands:
+docker-compose -f .\docker-compose.yml up	    // Start containers
+docker-compose up -d                            // restart any containers for which the configuration has changed
+docker ps -a 					                // list all containers
+docker exec -it <container-name> /bin/bash		// ssh into running container
+docker-compose rm -svf				            // cleanly stop and remove any running container
+docker rm <containerID> 			            // remove specific container with ID
+docker cp <path-host>:<path-container>          // copy to container or copy to host (easy for editing files on host machine)
+docker commit <container-name>                  // save state of container
+docker push <dockerhub-repo>:<container-name>   // push to docker hub
+docker tag <container-name> <dockerhub-repo>:<container-name>   //tag a container to push to dockerhub
+docker build -t <module-name> -f <DockerFile-name> .    // build docker container with tag <module-name> using custom <DockerFile-name>
+
+
+docker network ls				                //show all docker networks
+docker network rm <network-id>			        //remove network with ID
+docker inspect network <network-id>		        //inspect network with ID
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+kafka commands:
+kafka-topics.sh --create --bootstrap-server kafka-1:9092 --replication-factor 2 --partitions 3 --topic test 	//create topic
+kafka-topics.sh --bootstrap-server=kafka-1:9092 --list								                            //list topics in Kafka cluster
+kafka-console-consumer.sh --bootstrap-server kafka-1:9092 --topic output --from-beginning			            //see messages in topic
+kafka-topics.sh --bootstrap-server=kafka-1:9092 --delete --topic <topic_name>                                   //delete topic
+
+curl -X DELETE http://localhost:8081/subjects/<Kafka-value>         // delete schema registry for specific kafka topic

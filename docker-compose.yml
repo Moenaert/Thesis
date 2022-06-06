@@ -1,0 +1,270 @@
+# Author: Bastien & Gilles Moenaert
+# Date: 03/25/2022
+# Description:
+# This docker-compose file creates a locally running kafka cluster comp with 3 brokers and a schema registry.
+# The kafka cluster is created within a docker network that runs additional containers with several
+# services for administration and monitoring purposes. Ports to these services are exposed to the host where
+# docker is running and are accessible in the host browser.
+# List of exposed services:
+#   <service>: <HOST_port>:<CONTAINER_port>
+#   zoonavigator: 8000:8000
+#   kafka-monitoring: 2181:2181
+#   prometheus: 9090:9090
+#   grafana: 3000:300
+#   lensesio: 9992:9992
+#   kafka-manager: 9000:9000
+# Connection string for connections within Docker network: <container-name>:<CONTAINER_port> || host.docker.internal:<CONTAINER_port>
+# Connection string for connections outside Docker network: https://localhost:<HOST_port>
+# Docker-compose commands:
+#   launch container network: docker-compose -f .\docker-compose.yml up
+#   restart any containers for which the configuration has changed: docker-compose up -d
+########################################################################################################################
+version: '3'
+
+services:
+
+  consumer-lag-monitoring:
+    container_name: consumer-lag-monitoring
+    image: gilles98/thesis:consumer-lag-monitoring
+    ports:
+      - '9739:9739'
+    environment:
+      - kafka_bootstrap_servers=kafka-1:9091
+      - monitoring_lag_consumer_groups=*
+      - monitoring_lag_prometheus_http_port=9739
+      - monitoring_lag_logging_rootLogger_appenderRef_stdout_ref=LogToConsole
+      - monitoring_lag_logging_rootLogger_level=info
+
+  kpi-dashboard:
+    container_name: kpi-dashboard
+    image: gilles98/thesis:kpi-dashboard
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+    ports:
+      - "9091:9091" #kpi-dashboard bids  http://localhost:9091/bids
+      - "9092:9092" #kpi-dashboard bids  http://localhost:9092/accounts
+      - "9093:9093" #kpi-dashboard bids  http://localhost:9093/views
+
+  stream-application-1:
+    container_name: stream-processing-engine-1
+    image: gilles98/thesis:stream-processing-engine
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+
+  stream-application-2:
+    container_name: stream-processing-engine-2
+    image: gilles98/thesis:stream-processing-engine
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+
+  stream-application-3:
+    container_name: stream-processing-engine-3
+    image: gilles98/thesis:stream-processing-engine
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+
+  zookeeper:
+    container_name: zookeeper
+    image: gilles98/thesis:zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+      - ZOO_PORT_NUMBER=2181 # Can only be accessed from inside Docker network: zookeeper:2181
+
+  zoonavigator:
+    container_name: zoonavigator
+    image: gilles98/thesis:zoonavigator
+    ports:
+      - "7000:7000" # zoonavigator -> https://localhost:7000
+    environment:
+      HTTP_PORT: 7000
+    depends_on:
+      - zookeeper
+
+  kafka-monitoring:
+    container_name: xinfra-monitoring
+    image: gilles98/thesis:kafka-monitoring
+    ports:
+      - "8000:8000" #GUI
+      - "8778:8778" #JOLOKIA service -> provides browser access to monitoring data
+    # Steps to start jolokia service and launch default test:
+    # 1) ssh into container terminal and execute the following commands
+    # 2) cd kafka-monitoring/
+    # 3) ./bin/kafka-monitor-start.sh config/kafka-monitor.properties
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+
+  prometheus:
+    container_name: prometheus
+    image: gilles98/thesis:prometheus
+    ports:
+      - "9090:9090" #Prometheus -> https://localhost:9090
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+      - consumer-lag-monitoring
+
+  grafana:
+    container_name: grafana
+    image: gilles98/thesis:grafana #includes a pre-made kafka cluster overview dashboard for some key performance metrics
+    ports:
+      - "3000:3000" #Grafana
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+      - prometheus
+
+  lensesio:
+    container_name: lensesio
+    image: gilles98/thesis:lensesio
+    ports:
+      - "9992:9992" #lensesio -> https://localhost:9992
+    environment:
+      LENSES_PORT: 9992
+    # When server boots for first time you will need to pass some set up configurations.
+    # Bootstrap server: kafka-1:9091
+    # Security protocol: PLAINTEXT
+    # Kafka jmx port: 9991
+    # Schema registry: http://schema-registry:8081
+    # Schema registry jmx: 8881
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+
+  kafka-manager:
+    container_name: kafka-manager
+    image: gilles98/thesis:kafka-manager
+    ports:
+      - "9000:9000" #kafka-manager -> https://localhost:9000
+    environment:
+      ZK_HOSTS: "zookeeper:2181"
+    depends_on:
+      - zookeeper
+      - kafka-3
+      - kafka-2
+      - kafka-1
+      - schema-registry
+
+  kafka-1:
+    container_name: kafka-1
+    image: gilles98/thesis:kafka-jmx
+    depends_on:
+      - zookeeper
+    ports:
+      - "19091:19091" #kafka broker "bootstrap-server" This broker can be accessed by clients to fetch initial metadata about kafka cluster
+      - "8082:8080"   #prometheus-jmx-exporter httpserver -> curl localhost:8081 to see metrics
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_INTER_BROKER_LISTENER_NAME=CONNECTIONS_FROM_DOCKER_NETWORK
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONNECTIONS_FROM_DOCKER_NETWORK:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
+      # Security protocol: PLAINTEXT --> http : HTTP requests and responses are sent in plaintext
+      # Security protocol: SSL --> https : HTTPS requests and responses are encrypted
+      - KAFKA_ADVERTISED_LISTENERS=CONNECTIONS_FROM_DOCKER_NETWORK://kafka-1:9091,CONNECTIONS_FROM_HOST://localhost:19091
+      # Connections from inside Docker network use: kafka-1:9091
+      # Connections from outside Docker network use: localhost:19091->  19091 exposed to outside and mapped to port 19091 inside container
+      - KAFKA_JMX_PORT=9991
+      #- KAFKA_OPTS='-javaagent:/home/appuser/prometheus/jmx_prometheus_javaagent-0.3.1.jar=8080:/home/appuser/prometheus/kafka-0-8-2.yml'
+      #note:jmx exporter is already added to image gilles98/thesis:kafka-jmx; this configuration runs a jmx_prometheus_javaagent (with config in kafka-0-8-2.yml)
+      #The agent runs a http server where metrics are exposed in correct format to be scraped by prometheus
+      - KAFKA_LOG_RETENTION_HOURS=-1
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+
+
+  kafka-2:
+    container_name: kafka-2
+    image: gilles98/thesis:kafka-jmx
+    depends_on:
+      - zookeeper
+    ports:
+      - "19092:19092" #kafka broker "bootstrap-server" This broker can be accessed by clients to fetch initial metadata about kafka cluster
+      - "8083:8080"   #prometheus-jmx-exporter httpserver -> curl localhost:8080 to see metrics
+    environment:
+      - KAFKA_BROKER_ID=2
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_INTER_BROKER_LISTENER_NAME=CONNECTIONS_FROM_DOCKER_NETWORK
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONNECTIONS_FROM_DOCKER_NETWORK:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
+      # Security protocol: PLAINTEXT --> http : HTTP requests and responses are sent in plaintext
+      # Security protocol: SSL --> https : HTTPS requests and responses are encrypted
+      - KAFKA_ADVERTISED_LISTENERS=CONNECTIONS_FROM_DOCKER_NETWORK://kafka-2:9092,CONNECTIONS_FROM_HOST://localhost:19092
+      # Connections from inside Docker network use: kafka-2:9092
+      # Connections from outside Docker network use: localhost:19092->  19092 exposed to outside and mapped to port 19092 inside container
+      - KAFKA_JMX_PORT=9991
+      #KAFKA_OPTS: '-javaagent:/home/appuser/prometheus/jmx_prometheus_javaagent-0.3.1.jar=8080:/home/appuser/prometheus/kafka-0-8-2.yml'
+      #note:jmx exporter is already added to image; this configuration runs a jmx_prometheus_javaagent (with config in kafka-0-8-2.yml)
+      #The agent runs a http server where metrics are exposed in correct format to be scraped by prometheus
+      - KAFKA_LOG_RETENTION_HOURS=-1
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+
+  kafka-3:
+    container_name: kafka-3
+    image: gilles98/thesis:kafka-jmx
+    depends_on:
+      - zookeeper
+    ports:
+      - "19093:19093" #kafka broker "bootstrap-server" This broker can be accessed by clients to fetch initial metadata about kafka cluster
+      - "8084:8080"   #prometheus-jmx-exporter httpserver -> curl localhost:8080 to see metrics
+      # Prometheus is part of docker network so no need to expose this port (only for testing with curl)
+    environment:
+      - KAFKA_BROKER_ID=3
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_INTER_BROKER_LISTENER_NAME=CONNECTIONS_FROM_DOCKER_NETWORK
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=CONNECTIONS_FROM_DOCKER_NETWORK:PLAINTEXT,CONNECTIONS_FROM_HOST:PLAINTEXT
+      # Security protocol: PLAINTEXT --> http : HTTP requests and responses are sent in plaintext
+      # Security protocol: SSL --> https : HTTPS requests and responses are encrypted
+      - KAFKA_ADVERTISED_LISTENERS=CONNECTIONS_FROM_DOCKER_NETWORK://kafka-3:9093,CONNECTIONS_FROM_HOST://localhost:19093
+      # Connections from inside Docker network use: kafka-3:9093
+      # Connections from outside Docker network use: localhost:19093->  19093 exposed to outside and mapped to port 19091 inside container
+      - KAFKA_JMX_PORT=9991
+      #KAFKA_OPTS='-javaagent:/home/appuser/prometheus/jmx_prometheus_javaagent-0.3.1.jar=8080:/home/appuser/prometheus/kafka-0-8-2.yml'
+      #note:jmx exporter is already added to image; this configuration runs a jmx_prometheus_javaagent (with config in kafka-0-8-2.yml)
+      #The agent runs a http server where metrics are exposed in correct format to be scraped by prometheus
+      - KAFKA_LOG_RETENTION_HOURS=-1
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=3
+
+  schema-registry:
+    container_name: schema-registry
+    image: gilles98/thesis:schema-registry
+    hostname: schema-registry
+    depends_on:
+      - zookeeper
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    ports:
+      - "8081:8081" #schema-registry -> http://localhost:8081
+    environment:
+      SCHEMA_REGISTRY_LISTENERS: 'http://schema-registry:8081'
+      SCHEMA_REGISTRY_HOST_NAME: 'schema-registry'
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'kafka-1:9091,kafka-2:9092,kafka-3:9093'
+      SCHEMA_REGISTRY_ACCES_CONTROL_ALLOW_METHODS: 'GET,POST,OPTIONS'
+      SCHEMA_REGISTRY_ACCES_CONTROL_ALLOW_ORIGIN: '*'
+      SCHEMA_REGISTRY_JMX_PORT: 8881
