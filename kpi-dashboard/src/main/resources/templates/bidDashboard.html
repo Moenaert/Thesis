@@ -70,10 +70,20 @@
                 } ]
             }
         }
+        const footer = (tooltipItems) => {
 
+            return 'Summmmm: ';
+        };
         var bidConfig_window_1 = {
 
             type : 'line',
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        footer: footer,
+                    }
+                }
+            },
             data : {
                 labels : [],
                 datasets : [ {

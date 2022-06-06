@@ -2,7 +2,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-
 server:
   port: [9091,9092,9093]
 

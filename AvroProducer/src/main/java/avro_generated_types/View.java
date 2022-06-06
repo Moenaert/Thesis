@@ -6,9 +6,6 @@
 package avro_generated_types;
 
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -16,41 +13,6 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
   private static final long serialVersionUID = -8366861664144380762L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"View\",\"namespace\":\"avro_generated_types\",\"fields\":[{\"name\":\"propertyId\",\"type\":[\"null\",\"string\"]},{\"name\":\"numberOfViews\",\"type\":[\"null\",\"long\"]},{\"name\":\"timestamp\",\"type\":[\"null\",{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<View> ENCODER =
-      new BinaryMessageEncoder<View>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<View> DECODER =
-      new BinaryMessageDecoder<View>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<View> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<View> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<View>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this View to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a View from a ByteBuffer. */
-  public static View fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
   @Deprecated public java.lang.CharSequence propertyId;
   @Deprecated public java.lang.Long numberOfViews;
   @Deprecated public java.lang.Long timestamp;
@@ -343,7 +305,6 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public View build() {
       try {
         View record = new View();
@@ -351,24 +312,22 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
         record.numberOfViews = fieldSetFlags()[1] ? this.numberOfViews : (java.lang.Long) defaultValue(fields()[1]);
         record.timestamp = fieldSetFlags()[2] ? this.timestamp : (java.lang.Long) defaultValue(fields()[2]);
         return record;
-      } catch (java.lang.Exception e) {
+      } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<View>
-    WRITER$ = (org.apache.avro.io.DatumWriter<View>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<View>
-    READER$ = (org.apache.avro.io.DatumReader<View>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

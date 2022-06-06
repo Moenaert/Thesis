@@ -6,9 +6,6 @@
 package avro_generated_types;
 
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -16,41 +13,6 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
   private static final long serialVersionUID = -6464497190757742511L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Bid\",\"namespace\":\"avro_generated_types\",\"fields\":[{\"name\":\"id\",\"type\":[\"null\",\"string\"]},{\"name\":\"propertyId\",\"type\":[\"null\",\"string\"]},{\"name\":\"amount\",\"type\":[\"null\",\"string\"]},{\"name\":\"refused\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"timestamp\",\"type\":[\"null\",{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}]},{\"name\":\"__deleted\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"accountId\",\"type\":[\"null\",\"string\"]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<Bid> ENCODER =
-      new BinaryMessageEncoder<Bid>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<Bid> DECODER =
-      new BinaryMessageDecoder<Bid>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<Bid> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<Bid> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<Bid>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this Bid to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a Bid from a ByteBuffer. */
-  public static Bid fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
   @Deprecated public java.lang.CharSequence id;
   @Deprecated public java.lang.CharSequence propertyId;
   @Deprecated public java.lang.CharSequence amount;
@@ -619,7 +581,6 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Bid build() {
       try {
         Bid record = new Bid();
@@ -631,24 +592,22 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
         record.__deleted = fieldSetFlags()[5] ? this.__deleted : (java.lang.Boolean) defaultValue(fields()[5]);
         record.accountId = fieldSetFlags()[6] ? this.accountId : (java.lang.CharSequence) defaultValue(fields()[6]);
         return record;
-      } catch (java.lang.Exception e) {
+      } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<Bid>
-    WRITER$ = (org.apache.avro.io.DatumWriter<Bid>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<Bid>
-    READER$ = (org.apache.avro.io.DatumReader<Bid>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

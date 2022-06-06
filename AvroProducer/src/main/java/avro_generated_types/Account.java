@@ -6,9 +6,6 @@
 package avro_generated_types;
 
 import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
@@ -16,41 +13,6 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
   private static final long serialVersionUID = 3812514837277081279L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Account\",\"namespace\":\"avro_generated_types\",\"fields\":[{\"name\":\"id\",\"type\":[\"null\",\"string\"]},{\"name\":\"active\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"emailEnabled\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"language\",\"type\":[\"null\",\"string\"]},{\"name\":\"__deleted\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"timestamp\",\"type\":[\"null\",{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<Account> ENCODER =
-      new BinaryMessageEncoder<Account>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<Account> DECODER =
-      new BinaryMessageDecoder<Account>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<Account> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<Account> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<Account>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this Account to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a Account from a ByteBuffer. */
-  public static Account fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
   @Deprecated public java.lang.CharSequence id;
   @Deprecated public java.lang.Boolean active;
   @Deprecated public java.lang.Boolean emailEnabled;
@@ -550,7 +512,6 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Account build() {
       try {
         Account record = new Account();
@@ -561,24 +522,22 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
         record.__deleted = fieldSetFlags()[4] ? this.__deleted : (java.lang.Boolean) defaultValue(fields()[4]);
         record.timestamp = fieldSetFlags()[5] ? this.timestamp : (java.lang.Long) defaultValue(fields()[5]);
         return record;
-      } catch (java.lang.Exception e) {
+      } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
       }
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<Account>
-    WRITER$ = (org.apache.avro.io.DatumWriter<Account>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<Account>
-    READER$ = (org.apache.avro.io.DatumReader<Account>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

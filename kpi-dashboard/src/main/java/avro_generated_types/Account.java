@@ -5,9 +5,6 @@
  */
 package avro_generated_types;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 
 @SuppressWarnings("all")
@@ -16,47 +13,12 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
   private static final long serialVersionUID = 3812514837277081279L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Account\",\"namespace\":\"avro_generated_types\",\"fields\":[{\"name\":\"id\",\"type\":[\"null\",\"string\"]},{\"name\":\"active\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"emailEnabled\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"language\",\"type\":[\"null\",\"string\"]},{\"name\":\"__deleted\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"timestamp\",\"type\":[\"null\",{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<Account> ENCODER =
-      new BinaryMessageEncoder<Account>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<Account> DECODER =
-      new BinaryMessageDecoder<Account>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<Account> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<Account> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<Account>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this Account to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a Account from a ByteBuffer. */
-  public static Account fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
-  @Deprecated public CharSequence id;
-  @Deprecated public Boolean active;
-  @Deprecated public Boolean emailEnabled;
-  @Deprecated public CharSequence language;
-  @Deprecated public Boolean __deleted;
-  @Deprecated public Long timestamp;
+  @Deprecated public java.lang.CharSequence id;
+  @Deprecated public java.lang.Boolean active;
+  @Deprecated public java.lang.Boolean emailEnabled;
+  @Deprecated public java.lang.CharSequence language;
+  @Deprecated public java.lang.Boolean __deleted;
+  @Deprecated public java.lang.Long timestamp;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -74,7 +36,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param __deleted The new value for __deleted
    * @param timestamp The new value for timestamp
    */
-  public Account(CharSequence id, Boolean active, Boolean emailEnabled, CharSequence language, Boolean __deleted, Long timestamp) {
+  public Account(java.lang.CharSequence id, java.lang.Boolean active, java.lang.Boolean emailEnabled, java.lang.CharSequence language, java.lang.Boolean __deleted, java.lang.Long timestamp) {
     this.id = id;
     this.active = active;
     this.emailEnabled = emailEnabled;
@@ -85,7 +47,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
-  public Object get(int field$) {
+  public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return id;
     case 1: return active;
@@ -99,14 +61,14 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
 
   // Used by DatumReader.  Applications should not call.
   @SuppressWarnings(value="unchecked")
-  public void put(int field$, Object value$) {
+  public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (CharSequence)value$; break;
-    case 1: active = (Boolean)value$; break;
-    case 2: emailEnabled = (Boolean)value$; break;
-    case 3: language = (CharSequence)value$; break;
-    case 4: __deleted = (Boolean)value$; break;
-    case 5: timestamp = (Long)value$; break;
+    case 0: id = (java.lang.CharSequence)value$; break;
+    case 1: active = (java.lang.Boolean)value$; break;
+    case 2: emailEnabled = (java.lang.Boolean)value$; break;
+    case 3: language = (java.lang.CharSequence)value$; break;
+    case 4: __deleted = (java.lang.Boolean)value$; break;
+    case 5: timestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -115,7 +77,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Gets the value of the 'id' field.
    * @return The value of the 'id' field.
    */
-  public CharSequence getId() {
+  public java.lang.CharSequence getId() {
     return id;
   }
 
@@ -123,7 +85,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'id' field.
    * @param value the value to set.
    */
-  public void setId(CharSequence value) {
+  public void setId(java.lang.CharSequence value) {
     this.id = value;
   }
 
@@ -131,7 +93,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Gets the value of the 'active' field.
    * @return The value of the 'active' field.
    */
-  public Boolean getActive() {
+  public java.lang.Boolean getActive() {
     return active;
   }
 
@@ -139,7 +101,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'active' field.
    * @param value the value to set.
    */
-  public void setActive(Boolean value) {
+  public void setActive(java.lang.Boolean value) {
     this.active = value;
   }
 
@@ -147,7 +109,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Gets the value of the 'emailEnabled' field.
    * @return The value of the 'emailEnabled' field.
    */
-  public Boolean getEmailEnabled() {
+  public java.lang.Boolean getEmailEnabled() {
     return emailEnabled;
   }
 
@@ -155,7 +117,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'emailEnabled' field.
    * @param value the value to set.
    */
-  public void setEmailEnabled(Boolean value) {
+  public void setEmailEnabled(java.lang.Boolean value) {
     this.emailEnabled = value;
   }
 
@@ -163,7 +125,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Gets the value of the 'language' field.
    * @return The value of the 'language' field.
    */
-  public CharSequence getLanguage() {
+  public java.lang.CharSequence getLanguage() {
     return language;
   }
 
@@ -171,7 +133,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'language' field.
    * @param value the value to set.
    */
-  public void setLanguage(CharSequence value) {
+  public void setLanguage(java.lang.CharSequence value) {
     this.language = value;
   }
 
@@ -179,7 +141,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Gets the value of the '__deleted' field.
    * @return The value of the '__deleted' field.
    */
-  public Boolean getDeleted$1() {
+  public java.lang.Boolean getDeleted$1() {
     return __deleted;
   }
 
@@ -187,7 +149,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the '__deleted' field.
    * @param value the value to set.
    */
-  public void setDeleted$1(Boolean value) {
+  public void setDeleted$1(java.lang.Boolean value) {
     this.__deleted = value;
   }
 
@@ -195,7 +157,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Gets the value of the 'timestamp' field.
    * @return The value of the 'timestamp' field.
    */
-  public Long getTimestamp() {
+  public java.lang.Long getTimestamp() {
     return timestamp;
   }
 
@@ -203,7 +165,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'timestamp' field.
    * @param value the value to set.
    */
-  public void setTimestamp(Long value) {
+  public void setTimestamp(java.lang.Long value) {
     this.timestamp = value;
   }
 
@@ -211,8 +173,8 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * Creates a new Account RecordBuilder.
    * @return A new Account RecordBuilder
    */
-  public static Builder newBuilder() {
-    return new Builder();
+  public static avro_generated_types.Account.Builder newBuilder() {
+    return new avro_generated_types.Account.Builder();
   }
 
   /**
@@ -220,8 +182,8 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param other The existing builder to copy.
    * @return A new Account RecordBuilder
    */
-  public static Builder newBuilder(Builder other) {
-    return new Builder(other);
+  public static avro_generated_types.Account.Builder newBuilder(avro_generated_types.Account.Builder other) {
+    return new avro_generated_types.Account.Builder(other);
   }
 
   /**
@@ -229,8 +191,8 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param other The existing instance to copy.
    * @return A new Account RecordBuilder
    */
-  public static Builder newBuilder(Account other) {
-    return new Builder(other);
+  public static avro_generated_types.Account.Builder newBuilder(avro_generated_types.Account other) {
+    return new avro_generated_types.Account.Builder(other);
   }
 
   /**
@@ -239,12 +201,12 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Account>
     implements org.apache.avro.data.RecordBuilder<Account> {
 
-    private CharSequence id;
-    private Boolean active;
-    private Boolean emailEnabled;
-    private CharSequence language;
-    private Boolean __deleted;
-    private Long timestamp;
+    private java.lang.CharSequence id;
+    private java.lang.Boolean active;
+    private java.lang.Boolean emailEnabled;
+    private java.lang.CharSequence language;
+    private java.lang.Boolean __deleted;
+    private java.lang.Long timestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -255,7 +217,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(Builder other) {
+    private Builder(avro_generated_types.Account.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -287,7 +249,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
      * Creates a Builder by copying an existing Account instance
      * @param other The existing instance to copy.
      */
-    private Builder(Account other) {
+    private Builder(avro_generated_types.Account other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -319,7 +281,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Gets the value of the 'id' field.
       * @return The value.
       */
-    public CharSequence getId() {
+    public java.lang.CharSequence getId() {
       return id;
     }
 
@@ -328,7 +290,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public Builder setId(CharSequence value) {
+    public avro_generated_types.Account.Builder setId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -348,7 +310,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public Builder clearId() {
+    public avro_generated_types.Account.Builder clearId() {
       id = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -358,7 +320,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Gets the value of the 'active' field.
       * @return The value.
       */
-    public Boolean getActive() {
+    public java.lang.Boolean getActive() {
       return active;
     }
 
@@ -367,7 +329,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'active'.
       * @return This builder.
       */
-    public Builder setActive(Boolean value) {
+    public avro_generated_types.Account.Builder setActive(java.lang.Boolean value) {
       validate(fields()[1], value);
       this.active = value;
       fieldSetFlags()[1] = true;
@@ -387,7 +349,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the 'active' field.
       * @return This builder.
       */
-    public Builder clearActive() {
+    public avro_generated_types.Account.Builder clearActive() {
       active = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -397,7 +359,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Gets the value of the 'emailEnabled' field.
       * @return The value.
       */
-    public Boolean getEmailEnabled() {
+    public java.lang.Boolean getEmailEnabled() {
       return emailEnabled;
     }
 
@@ -406,7 +368,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'emailEnabled'.
       * @return This builder.
       */
-    public Builder setEmailEnabled(Boolean value) {
+    public avro_generated_types.Account.Builder setEmailEnabled(java.lang.Boolean value) {
       validate(fields()[2], value);
       this.emailEnabled = value;
       fieldSetFlags()[2] = true;
@@ -426,7 +388,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the 'emailEnabled' field.
       * @return This builder.
       */
-    public Builder clearEmailEnabled() {
+    public avro_generated_types.Account.Builder clearEmailEnabled() {
       emailEnabled = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -436,7 +398,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Gets the value of the 'language' field.
       * @return The value.
       */
-    public CharSequence getLanguage() {
+    public java.lang.CharSequence getLanguage() {
       return language;
     }
 
@@ -445,7 +407,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'language'.
       * @return This builder.
       */
-    public Builder setLanguage(CharSequence value) {
+    public avro_generated_types.Account.Builder setLanguage(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.language = value;
       fieldSetFlags()[3] = true;
@@ -465,7 +427,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the 'language' field.
       * @return This builder.
       */
-    public Builder clearLanguage() {
+    public avro_generated_types.Account.Builder clearLanguage() {
       language = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -475,7 +437,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Gets the value of the '__deleted' field.
       * @return The value.
       */
-    public Boolean getDeleted$1() {
+    public java.lang.Boolean getDeleted$1() {
       return __deleted;
     }
 
@@ -484,7 +446,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of '__deleted'.
       * @return This builder.
       */
-    public Builder setDeleted$1(Boolean value) {
+    public avro_generated_types.Account.Builder setDeleted$1(java.lang.Boolean value) {
       validate(fields()[4], value);
       this.__deleted = value;
       fieldSetFlags()[4] = true;
@@ -504,7 +466,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the '__deleted' field.
       * @return This builder.
       */
-    public Builder clearDeleted$1() {
+    public avro_generated_types.Account.Builder clearDeleted$1() {
       __deleted = null;
       fieldSetFlags()[4] = false;
       return this;
@@ -514,7 +476,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Gets the value of the 'timestamp' field.
       * @return The value.
       */
-    public Long getTimestamp() {
+    public java.lang.Long getTimestamp() {
       return timestamp;
     }
 
@@ -523,7 +485,7 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'timestamp'.
       * @return This builder.
       */
-    public Builder setTimestamp(Long value) {
+    public avro_generated_types.Account.Builder setTimestamp(java.lang.Long value) {
       validate(fields()[5], value);
       this.timestamp = value;
       fieldSetFlags()[5] = true;
@@ -543,23 +505,22 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
       * Clears the value of the 'timestamp' field.
       * @return This builder.
       */
-    public Builder clearTimestamp() {
+    public avro_generated_types.Account.Builder clearTimestamp() {
       timestamp = null;
       fieldSetFlags()[5] = false;
       return this;
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Account build() {
       try {
         Account record = new Account();
-        record.id = fieldSetFlags()[0] ? this.id : (CharSequence) defaultValue(fields()[0]);
-        record.active = fieldSetFlags()[1] ? this.active : (Boolean) defaultValue(fields()[1]);
-        record.emailEnabled = fieldSetFlags()[2] ? this.emailEnabled : (Boolean) defaultValue(fields()[2]);
-        record.language = fieldSetFlags()[3] ? this.language : (CharSequence) defaultValue(fields()[3]);
-        record.__deleted = fieldSetFlags()[4] ? this.__deleted : (Boolean) defaultValue(fields()[4]);
-        record.timestamp = fieldSetFlags()[5] ? this.timestamp : (Long) defaultValue(fields()[5]);
+        record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.active = fieldSetFlags()[1] ? this.active : (java.lang.Boolean) defaultValue(fields()[1]);
+        record.emailEnabled = fieldSetFlags()[2] ? this.emailEnabled : (java.lang.Boolean) defaultValue(fields()[2]);
+        record.language = fieldSetFlags()[3] ? this.language : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.__deleted = fieldSetFlags()[4] ? this.__deleted : (java.lang.Boolean) defaultValue(fields()[4]);
+        record.timestamp = fieldSetFlags()[5] ? this.timestamp : (java.lang.Long) defaultValue(fields()[5]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
@@ -567,18 +528,16 @@ public class Account extends org.apache.avro.specific.SpecificRecordBase impleme
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<Account>
-    WRITER$ = (org.apache.avro.io.DatumWriter<Account>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<Account>
-    READER$ = (org.apache.avro.io.DatumReader<Account>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

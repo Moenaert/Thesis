@@ -5,9 +5,6 @@
  */
 package avro_generated_types;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 
 @SuppressWarnings("all")
@@ -16,48 +13,13 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
   private static final long serialVersionUID = -6464497190757742511L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Bid\",\"namespace\":\"avro_generated_types\",\"fields\":[{\"name\":\"id\",\"type\":[\"null\",\"string\"]},{\"name\":\"propertyId\",\"type\":[\"null\",\"string\"]},{\"name\":\"amount\",\"type\":[\"null\",\"string\"]},{\"name\":\"refused\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"timestamp\",\"type\":[\"null\",{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}]},{\"name\":\"__deleted\",\"type\":[\"null\",\"boolean\"]},{\"name\":\"accountId\",\"type\":[\"null\",\"string\"]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<Bid> ENCODER =
-      new BinaryMessageEncoder<Bid>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<Bid> DECODER =
-      new BinaryMessageDecoder<Bid>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<Bid> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<Bid> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<Bid>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this Bid to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a Bid from a ByteBuffer. */
-  public static Bid fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
-  @Deprecated public CharSequence id;
-  @Deprecated public CharSequence propertyId;
-  @Deprecated public CharSequence amount;
-  @Deprecated public Boolean refused;
-  @Deprecated public Long timestamp;
-  @Deprecated public Boolean __deleted;
-  @Deprecated public CharSequence accountId;
+  @Deprecated public java.lang.CharSequence id;
+  @Deprecated public java.lang.CharSequence propertyId;
+  @Deprecated public java.lang.CharSequence amount;
+  @Deprecated public java.lang.Boolean refused;
+  @Deprecated public java.lang.Long timestamp;
+  @Deprecated public java.lang.Boolean __deleted;
+  @Deprecated public java.lang.CharSequence accountId;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -76,7 +38,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * @param __deleted The new value for __deleted
    * @param accountId The new value for accountId
    */
-  public Bid(CharSequence id, CharSequence propertyId, CharSequence amount, Boolean refused, Long timestamp, Boolean __deleted, CharSequence accountId) {
+  public Bid(java.lang.CharSequence id, java.lang.CharSequence propertyId, java.lang.CharSequence amount, java.lang.Boolean refused, java.lang.Long timestamp, java.lang.Boolean __deleted, java.lang.CharSequence accountId) {
     this.id = id;
     this.propertyId = propertyId;
     this.amount = amount;
@@ -88,7 +50,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
-  public Object get(int field$) {
+  public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return id;
     case 1: return propertyId;
@@ -103,15 +65,15 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
 
   // Used by DatumReader.  Applications should not call.
   @SuppressWarnings(value="unchecked")
-  public void put(int field$, Object value$) {
+  public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: id = (CharSequence)value$; break;
-    case 1: propertyId = (CharSequence)value$; break;
-    case 2: amount = (CharSequence)value$; break;
-    case 3: refused = (Boolean)value$; break;
-    case 4: timestamp = (Long)value$; break;
-    case 5: __deleted = (Boolean)value$; break;
-    case 6: accountId = (CharSequence)value$; break;
+    case 0: id = (java.lang.CharSequence)value$; break;
+    case 1: propertyId = (java.lang.CharSequence)value$; break;
+    case 2: amount = (java.lang.CharSequence)value$; break;
+    case 3: refused = (java.lang.Boolean)value$; break;
+    case 4: timestamp = (java.lang.Long)value$; break;
+    case 5: __deleted = (java.lang.Boolean)value$; break;
+    case 6: accountId = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -120,7 +82,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Gets the value of the 'id' field.
    * @return The value of the 'id' field.
    */
-  public CharSequence getId() {
+  public java.lang.CharSequence getId() {
     return id;
   }
 
@@ -128,7 +90,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Sets the value of the 'id' field.
    * @param value the value to set.
    */
-  public void setId(CharSequence value) {
+  public void setId(java.lang.CharSequence value) {
     this.id = value;
   }
 
@@ -136,7 +98,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Gets the value of the 'propertyId' field.
    * @return The value of the 'propertyId' field.
    */
-  public CharSequence getPropertyId() {
+  public java.lang.CharSequence getPropertyId() {
     return propertyId;
   }
 
@@ -144,7 +106,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Sets the value of the 'propertyId' field.
    * @param value the value to set.
    */
-  public void setPropertyId(CharSequence value) {
+  public void setPropertyId(java.lang.CharSequence value) {
     this.propertyId = value;
   }
 
@@ -152,7 +114,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Gets the value of the 'amount' field.
    * @return The value of the 'amount' field.
    */
-  public CharSequence getAmount() {
+  public java.lang.CharSequence getAmount() {
     return amount;
   }
 
@@ -160,7 +122,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Sets the value of the 'amount' field.
    * @param value the value to set.
    */
-  public void setAmount(CharSequence value) {
+  public void setAmount(java.lang.CharSequence value) {
     this.amount = value;
   }
 
@@ -168,7 +130,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Gets the value of the 'refused' field.
    * @return The value of the 'refused' field.
    */
-  public Boolean getRefused() {
+  public java.lang.Boolean getRefused() {
     return refused;
   }
 
@@ -176,7 +138,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Sets the value of the 'refused' field.
    * @param value the value to set.
    */
-  public void setRefused(Boolean value) {
+  public void setRefused(java.lang.Boolean value) {
     this.refused = value;
   }
 
@@ -184,7 +146,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Gets the value of the 'timestamp' field.
    * @return The value of the 'timestamp' field.
    */
-  public Long getTimestamp() {
+  public java.lang.Long getTimestamp() {
     return timestamp;
   }
 
@@ -192,7 +154,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Sets the value of the 'timestamp' field.
    * @param value the value to set.
    */
-  public void setTimestamp(Long value) {
+  public void setTimestamp(java.lang.Long value) {
     this.timestamp = value;
   }
 
@@ -200,7 +162,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Gets the value of the '__deleted' field.
    * @return The value of the '__deleted' field.
    */
-  public Boolean getDeleted$1() {
+  public java.lang.Boolean getDeleted$1() {
     return __deleted;
   }
 
@@ -208,7 +170,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Sets the value of the '__deleted' field.
    * @param value the value to set.
    */
-  public void setDeleted$1(Boolean value) {
+  public void setDeleted$1(java.lang.Boolean value) {
     this.__deleted = value;
   }
 
@@ -216,7 +178,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Gets the value of the 'accountId' field.
    * @return The value of the 'accountId' field.
    */
-  public CharSequence getAccountId() {
+  public java.lang.CharSequence getAccountId() {
     return accountId;
   }
 
@@ -224,7 +186,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Sets the value of the 'accountId' field.
    * @param value the value to set.
    */
-  public void setAccountId(CharSequence value) {
+  public void setAccountId(java.lang.CharSequence value) {
     this.accountId = value;
   }
 
@@ -232,8 +194,8 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * Creates a new Bid RecordBuilder.
    * @return A new Bid RecordBuilder
    */
-  public static Builder newBuilder() {
-    return new Builder();
+  public static avro_generated_types.Bid.Builder newBuilder() {
+    return new avro_generated_types.Bid.Builder();
   }
 
   /**
@@ -241,8 +203,8 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * @param other The existing builder to copy.
    * @return A new Bid RecordBuilder
    */
-  public static Builder newBuilder(Builder other) {
-    return new Builder(other);
+  public static avro_generated_types.Bid.Builder newBuilder(avro_generated_types.Bid.Builder other) {
+    return new avro_generated_types.Bid.Builder(other);
   }
 
   /**
@@ -250,8 +212,8 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
    * @param other The existing instance to copy.
    * @return A new Bid RecordBuilder
    */
-  public static Builder newBuilder(Bid other) {
-    return new Builder(other);
+  public static avro_generated_types.Bid.Builder newBuilder(avro_generated_types.Bid other) {
+    return new avro_generated_types.Bid.Builder(other);
   }
 
   /**
@@ -260,13 +222,13 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Bid>
     implements org.apache.avro.data.RecordBuilder<Bid> {
 
-    private CharSequence id;
-    private CharSequence propertyId;
-    private CharSequence amount;
-    private Boolean refused;
-    private Long timestamp;
-    private Boolean __deleted;
-    private CharSequence accountId;
+    private java.lang.CharSequence id;
+    private java.lang.CharSequence propertyId;
+    private java.lang.CharSequence amount;
+    private java.lang.Boolean refused;
+    private java.lang.Long timestamp;
+    private java.lang.Boolean __deleted;
+    private java.lang.CharSequence accountId;
 
     /** Creates a new Builder */
     private Builder() {
@@ -277,7 +239,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(Builder other) {
+    private Builder(avro_generated_types.Bid.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -313,7 +275,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
      * Creates a Builder by copying an existing Bid instance
      * @param other The existing instance to copy.
      */
-    private Builder(Bid other) {
+    private Builder(avro_generated_types.Bid other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -349,7 +311,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Gets the value of the 'id' field.
       * @return The value.
       */
-    public CharSequence getId() {
+    public java.lang.CharSequence getId() {
       return id;
     }
 
@@ -358,7 +320,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public Builder setId(CharSequence value) {
+    public avro_generated_types.Bid.Builder setId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -378,7 +340,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public Builder clearId() {
+    public avro_generated_types.Bid.Builder clearId() {
       id = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -388,7 +350,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Gets the value of the 'propertyId' field.
       * @return The value.
       */
-    public CharSequence getPropertyId() {
+    public java.lang.CharSequence getPropertyId() {
       return propertyId;
     }
 
@@ -397,7 +359,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * @param value The value of 'propertyId'.
       * @return This builder.
       */
-    public Builder setPropertyId(CharSequence value) {
+    public avro_generated_types.Bid.Builder setPropertyId(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.propertyId = value;
       fieldSetFlags()[1] = true;
@@ -417,7 +379,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Clears the value of the 'propertyId' field.
       * @return This builder.
       */
-    public Builder clearPropertyId() {
+    public avro_generated_types.Bid.Builder clearPropertyId() {
       propertyId = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -427,7 +389,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Gets the value of the 'amount' field.
       * @return The value.
       */
-    public CharSequence getAmount() {
+    public java.lang.CharSequence getAmount() {
       return amount;
     }
 
@@ -436,7 +398,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * @param value The value of 'amount'.
       * @return This builder.
       */
-    public Builder setAmount(CharSequence value) {
+    public avro_generated_types.Bid.Builder setAmount(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.amount = value;
       fieldSetFlags()[2] = true;
@@ -456,7 +418,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Clears the value of the 'amount' field.
       * @return This builder.
       */
-    public Builder clearAmount() {
+    public avro_generated_types.Bid.Builder clearAmount() {
       amount = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -466,7 +428,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Gets the value of the 'refused' field.
       * @return The value.
       */
-    public Boolean getRefused() {
+    public java.lang.Boolean getRefused() {
       return refused;
     }
 
@@ -475,7 +437,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * @param value The value of 'refused'.
       * @return This builder.
       */
-    public Builder setRefused(Boolean value) {
+    public avro_generated_types.Bid.Builder setRefused(java.lang.Boolean value) {
       validate(fields()[3], value);
       this.refused = value;
       fieldSetFlags()[3] = true;
@@ -495,7 +457,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Clears the value of the 'refused' field.
       * @return This builder.
       */
-    public Builder clearRefused() {
+    public avro_generated_types.Bid.Builder clearRefused() {
       refused = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -505,7 +467,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Gets the value of the 'timestamp' field.
       * @return The value.
       */
-    public Long getTimestamp() {
+    public java.lang.Long getTimestamp() {
       return timestamp;
     }
 
@@ -514,7 +476,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * @param value The value of 'timestamp'.
       * @return This builder.
       */
-    public Builder setTimestamp(Long value) {
+    public avro_generated_types.Bid.Builder setTimestamp(java.lang.Long value) {
       validate(fields()[4], value);
       this.timestamp = value;
       fieldSetFlags()[4] = true;
@@ -534,7 +496,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Clears the value of the 'timestamp' field.
       * @return This builder.
       */
-    public Builder clearTimestamp() {
+    public avro_generated_types.Bid.Builder clearTimestamp() {
       timestamp = null;
       fieldSetFlags()[4] = false;
       return this;
@@ -544,7 +506,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Gets the value of the '__deleted' field.
       * @return The value.
       */
-    public Boolean getDeleted$1() {
+    public java.lang.Boolean getDeleted$1() {
       return __deleted;
     }
 
@@ -553,7 +515,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * @param value The value of '__deleted'.
       * @return This builder.
       */
-    public Builder setDeleted$1(Boolean value) {
+    public avro_generated_types.Bid.Builder setDeleted$1(java.lang.Boolean value) {
       validate(fields()[5], value);
       this.__deleted = value;
       fieldSetFlags()[5] = true;
@@ -573,7 +535,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Clears the value of the '__deleted' field.
       * @return This builder.
       */
-    public Builder clearDeleted$1() {
+    public avro_generated_types.Bid.Builder clearDeleted$1() {
       __deleted = null;
       fieldSetFlags()[5] = false;
       return this;
@@ -583,7 +545,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Gets the value of the 'accountId' field.
       * @return The value.
       */
-    public CharSequence getAccountId() {
+    public java.lang.CharSequence getAccountId() {
       return accountId;
     }
 
@@ -592,7 +554,7 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * @param value The value of 'accountId'.
       * @return This builder.
       */
-    public Builder setAccountId(CharSequence value) {
+    public avro_generated_types.Bid.Builder setAccountId(java.lang.CharSequence value) {
       validate(fields()[6], value);
       this.accountId = value;
       fieldSetFlags()[6] = true;
@@ -612,24 +574,23 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
       * Clears the value of the 'accountId' field.
       * @return This builder.
       */
-    public Builder clearAccountId() {
+    public avro_generated_types.Bid.Builder clearAccountId() {
       accountId = null;
       fieldSetFlags()[6] = false;
       return this;
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Bid build() {
       try {
         Bid record = new Bid();
-        record.id = fieldSetFlags()[0] ? this.id : (CharSequence) defaultValue(fields()[0]);
-        record.propertyId = fieldSetFlags()[1] ? this.propertyId : (CharSequence) defaultValue(fields()[1]);
-        record.amount = fieldSetFlags()[2] ? this.amount : (CharSequence) defaultValue(fields()[2]);
-        record.refused = fieldSetFlags()[3] ? this.refused : (Boolean) defaultValue(fields()[3]);
-        record.timestamp = fieldSetFlags()[4] ? this.timestamp : (Long) defaultValue(fields()[4]);
-        record.__deleted = fieldSetFlags()[5] ? this.__deleted : (Boolean) defaultValue(fields()[5]);
-        record.accountId = fieldSetFlags()[6] ? this.accountId : (CharSequence) defaultValue(fields()[6]);
+        record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.propertyId = fieldSetFlags()[1] ? this.propertyId : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.amount = fieldSetFlags()[2] ? this.amount : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.refused = fieldSetFlags()[3] ? this.refused : (java.lang.Boolean) defaultValue(fields()[3]);
+        record.timestamp = fieldSetFlags()[4] ? this.timestamp : (java.lang.Long) defaultValue(fields()[4]);
+        record.__deleted = fieldSetFlags()[5] ? this.__deleted : (java.lang.Boolean) defaultValue(fields()[5]);
+        record.accountId = fieldSetFlags()[6] ? this.accountId : (java.lang.CharSequence) defaultValue(fields()[6]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
@@ -637,18 +598,16 @@ public class Bid extends org.apache.avro.specific.SpecificRecordBase implements 
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<Bid>
-    WRITER$ = (org.apache.avro.io.DatumWriter<Bid>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<Bid>
-    READER$ = (org.apache.avro.io.DatumReader<Bid>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {

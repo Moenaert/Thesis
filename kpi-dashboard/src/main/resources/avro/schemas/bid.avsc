@@ -1,0 +1,24 @@
+{
+    "type":"record",
+    "name":"Bid",
+    "namespace":"avro_generated_types",
+    "fields":[
+      {
+      "name":"id",
+      "type":["null","string"]},{
+        "name":"propertyId",
+        "type":["null","string"]},{
+        "name":"amount",
+        "type":["null","string"]},{
+        "name":"refused",
+        "type":["null","boolean"]},{
+        "name":"timestamp",
+        "type":["null",{
+            "type":"long",
+            "logicalType":"timestamp-micros"}]},{
+        "name":"__deleted",
+        "type":["null","boolean"]},{
+        "name":"accountId",
+        "type":["null","string"]}
+        ]
+}

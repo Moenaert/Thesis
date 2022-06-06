@@ -5,9 +5,6 @@
  */
 package avro_generated_types;
 
-import org.apache.avro.message.BinaryMessageDecoder;
-import org.apache.avro.message.BinaryMessageEncoder;
-import org.apache.avro.message.SchemaStore;
 import org.apache.avro.specific.SpecificData;
 
 @SuppressWarnings("all")
@@ -16,44 +13,9 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
   private static final long serialVersionUID = -8366861664144380762L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"View\",\"namespace\":\"avro_generated_types\",\"fields\":[{\"name\":\"propertyId\",\"type\":[\"null\",\"string\"]},{\"name\":\"numberOfViews\",\"type\":[\"null\",\"long\"]},{\"name\":\"timestamp\",\"type\":[\"null\",{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-
-  private static SpecificData MODEL$ = new SpecificData();
-
-  private static final BinaryMessageEncoder<View> ENCODER =
-      new BinaryMessageEncoder<View>(MODEL$, SCHEMA$);
-
-  private static final BinaryMessageDecoder<View> DECODER =
-      new BinaryMessageDecoder<View>(MODEL$, SCHEMA$);
-
-  /**
-   * Return the BinaryMessageDecoder instance used by this class.
-   */
-  public static BinaryMessageDecoder<View> getDecoder() {
-    return DECODER;
-  }
-
-  /**
-   * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
-   * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
-   */
-  public static BinaryMessageDecoder<View> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<View>(MODEL$, SCHEMA$, resolver);
-  }
-
-  /** Serializes this View to a ByteBuffer. */
-  public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
-    return ENCODER.encode(this);
-  }
-
-  /** Deserializes a View from a ByteBuffer. */
-  public static View fromByteBuffer(
-      java.nio.ByteBuffer b) throws java.io.IOException {
-    return DECODER.decode(b);
-  }
-
-  @Deprecated public CharSequence propertyId;
-  @Deprecated public Long numberOfViews;
-  @Deprecated public Long timestamp;
+  @Deprecated public java.lang.CharSequence propertyId;
+  @Deprecated public java.lang.Long numberOfViews;
+  @Deprecated public java.lang.Long timestamp;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -68,7 +30,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * @param numberOfViews The new value for numberOfViews
    * @param timestamp The new value for timestamp
    */
-  public View(CharSequence propertyId, Long numberOfViews, Long timestamp) {
+  public View(java.lang.CharSequence propertyId, java.lang.Long numberOfViews, java.lang.Long timestamp) {
     this.propertyId = propertyId;
     this.numberOfViews = numberOfViews;
     this.timestamp = timestamp;
@@ -76,7 +38,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
-  public Object get(int field$) {
+  public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return propertyId;
     case 1: return numberOfViews;
@@ -87,11 +49,11 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
 
   // Used by DatumReader.  Applications should not call.
   @SuppressWarnings(value="unchecked")
-  public void put(int field$, Object value$) {
+  public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: propertyId = (CharSequence)value$; break;
-    case 1: numberOfViews = (Long)value$; break;
-    case 2: timestamp = (Long)value$; break;
+    case 0: propertyId = (java.lang.CharSequence)value$; break;
+    case 1: numberOfViews = (java.lang.Long)value$; break;
+    case 2: timestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -100,7 +62,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * Gets the value of the 'propertyId' field.
    * @return The value of the 'propertyId' field.
    */
-  public CharSequence getPropertyId() {
+  public java.lang.CharSequence getPropertyId() {
     return propertyId;
   }
 
@@ -108,7 +70,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * Sets the value of the 'propertyId' field.
    * @param value the value to set.
    */
-  public void setPropertyId(CharSequence value) {
+  public void setPropertyId(java.lang.CharSequence value) {
     this.propertyId = value;
   }
 
@@ -116,7 +78,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * Gets the value of the 'numberOfViews' field.
    * @return The value of the 'numberOfViews' field.
    */
-  public Long getNumberOfViews() {
+  public java.lang.Long getNumberOfViews() {
     return numberOfViews;
   }
 
@@ -124,7 +86,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * Sets the value of the 'numberOfViews' field.
    * @param value the value to set.
    */
-  public void setNumberOfViews(Long value) {
+  public void setNumberOfViews(java.lang.Long value) {
     this.numberOfViews = value;
   }
 
@@ -132,7 +94,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * Gets the value of the 'timestamp' field.
    * @return The value of the 'timestamp' field.
    */
-  public Long getTimestamp() {
+  public java.lang.Long getTimestamp() {
     return timestamp;
   }
 
@@ -140,7 +102,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * Sets the value of the 'timestamp' field.
    * @param value the value to set.
    */
-  public void setTimestamp(Long value) {
+  public void setTimestamp(java.lang.Long value) {
     this.timestamp = value;
   }
 
@@ -148,8 +110,8 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * Creates a new View RecordBuilder.
    * @return A new View RecordBuilder
    */
-  public static Builder newBuilder() {
-    return new Builder();
+  public static avro_generated_types.View.Builder newBuilder() {
+    return new avro_generated_types.View.Builder();
   }
 
   /**
@@ -157,8 +119,8 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * @param other The existing builder to copy.
    * @return A new View RecordBuilder
    */
-  public static Builder newBuilder(Builder other) {
-    return new Builder(other);
+  public static avro_generated_types.View.Builder newBuilder(avro_generated_types.View.Builder other) {
+    return new avro_generated_types.View.Builder(other);
   }
 
   /**
@@ -166,8 +128,8 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
    * @param other The existing instance to copy.
    * @return A new View RecordBuilder
    */
-  public static Builder newBuilder(View other) {
-    return new Builder(other);
+  public static avro_generated_types.View.Builder newBuilder(avro_generated_types.View other) {
+    return new avro_generated_types.View.Builder(other);
   }
 
   /**
@@ -176,9 +138,9 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<View>
     implements org.apache.avro.data.RecordBuilder<View> {
 
-    private CharSequence propertyId;
-    private Long numberOfViews;
-    private Long timestamp;
+    private java.lang.CharSequence propertyId;
+    private java.lang.Long numberOfViews;
+    private java.lang.Long timestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -189,7 +151,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(Builder other) {
+    private Builder(avro_generated_types.View.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.propertyId)) {
         this.propertyId = data().deepCopy(fields()[0].schema(), other.propertyId);
@@ -209,7 +171,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
      * Creates a Builder by copying an existing View instance
      * @param other The existing instance to copy.
      */
-    private Builder(View other) {
+    private Builder(avro_generated_types.View other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.propertyId)) {
         this.propertyId = data().deepCopy(fields()[0].schema(), other.propertyId);
@@ -229,7 +191,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * Gets the value of the 'propertyId' field.
       * @return The value.
       */
-    public CharSequence getPropertyId() {
+    public java.lang.CharSequence getPropertyId() {
       return propertyId;
     }
 
@@ -238,7 +200,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'propertyId'.
       * @return This builder.
       */
-    public Builder setPropertyId(CharSequence value) {
+    public avro_generated_types.View.Builder setPropertyId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.propertyId = value;
       fieldSetFlags()[0] = true;
@@ -258,7 +220,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'propertyId' field.
       * @return This builder.
       */
-    public Builder clearPropertyId() {
+    public avro_generated_types.View.Builder clearPropertyId() {
       propertyId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -268,7 +230,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * Gets the value of the 'numberOfViews' field.
       * @return The value.
       */
-    public Long getNumberOfViews() {
+    public java.lang.Long getNumberOfViews() {
       return numberOfViews;
     }
 
@@ -277,7 +239,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'numberOfViews'.
       * @return This builder.
       */
-    public Builder setNumberOfViews(Long value) {
+    public avro_generated_types.View.Builder setNumberOfViews(java.lang.Long value) {
       validate(fields()[1], value);
       this.numberOfViews = value;
       fieldSetFlags()[1] = true;
@@ -297,7 +259,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'numberOfViews' field.
       * @return This builder.
       */
-    public Builder clearNumberOfViews() {
+    public avro_generated_types.View.Builder clearNumberOfViews() {
       numberOfViews = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -307,7 +269,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * Gets the value of the 'timestamp' field.
       * @return The value.
       */
-    public Long getTimestamp() {
+    public java.lang.Long getTimestamp() {
       return timestamp;
     }
 
@@ -316,7 +278,7 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * @param value The value of 'timestamp'.
       * @return This builder.
       */
-    public Builder setTimestamp(Long value) {
+    public avro_generated_types.View.Builder setTimestamp(java.lang.Long value) {
       validate(fields()[2], value);
       this.timestamp = value;
       fieldSetFlags()[2] = true;
@@ -336,20 +298,19 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
       * Clears the value of the 'timestamp' field.
       * @return This builder.
       */
-    public Builder clearTimestamp() {
+    public avro_generated_types.View.Builder clearTimestamp() {
       timestamp = null;
       fieldSetFlags()[2] = false;
       return this;
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public View build() {
       try {
         View record = new View();
-        record.propertyId = fieldSetFlags()[0] ? this.propertyId : (CharSequence) defaultValue(fields()[0]);
-        record.numberOfViews = fieldSetFlags()[1] ? this.numberOfViews : (Long) defaultValue(fields()[1]);
-        record.timestamp = fieldSetFlags()[2] ? this.timestamp : (Long) defaultValue(fields()[2]);
+        record.propertyId = fieldSetFlags()[0] ? this.propertyId : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.numberOfViews = fieldSetFlags()[1] ? this.numberOfViews : (java.lang.Long) defaultValue(fields()[1]);
+        record.timestamp = fieldSetFlags()[2] ? this.timestamp : (java.lang.Long) defaultValue(fields()[2]);
         return record;
       } catch (Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
@@ -357,18 +318,16 @@ public class View extends org.apache.avro.specific.SpecificRecordBase implements
     }
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<View>
-    WRITER$ = (org.apache.avro.io.DatumWriter<View>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter
+    WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
     WRITER$.write(this, SpecificData.getEncoder(out));
   }
 
-  @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<View>
-    READER$ = (org.apache.avro.io.DatumReader<View>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader
+    READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
